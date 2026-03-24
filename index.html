@@ -235,45 +235,45 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:'Boogaloo',cur
 <!-- ═══ TITLE ═══ -->
 <div id="title-screen" class="screen active">
   <div class="logo"><span class="lM">M</span><span class="lE">E</span><span class="lO">O</span><span class="lW">W</span><span class="lSP"> </span><span class="lD">D</span><span class="lR">R</span><span class="lO2">O</span><span class="lP">P</span></div>
-  <div class="tagline">落下配對 · 消除冒險</div>
+  <div class="tagline">落下配對・消除冒險 &nbsp;|&nbsp; Drop · Match · Clear</div>
   <div class="showcase" id="showcase"></div>
-  <button class="tbtn tp" style="margin-top:12px" onclick="showLvScreen()">&#9654; PLAY NOW</button>
-  <button class="tbtn tl" onclick="showLvScreen()">&#128062; SELECT LEVEL</button>
-  <button class="title-book-btn" onclick="openBook()">&#128218; 收藏冊 · REWARDS</button>
-  <div class="hi">BEST &nbsp;&middot;&nbsp; <span id="hi-val">0</span></div>
+  <button class="tbtn tp" style="margin-top:12px" onclick="btnMeow();showLvScreen()">&#9654; 開始遊戲 PLAY</button>
+  <button class="tbtn tl" onclick="btnMeow();showLvScreen()">&#128062; 選擇關卡 LEVELS</button>
+  <button class="title-book-btn" onclick="btnMeow();openBook()">&#128218; 收藏冊・獎勵 REWARDS</button>
+  <div class="hi">最高分 BEST &nbsp;&middot;&nbsp; <span id="hi-val">0</span></div>
 </div>
 
 <!-- ═══ LEVEL SELECT ═══ -->
 <div id="lv-screen" class="screen">
-  <div class="ls-title">SELECT LEVEL</div>
+  <div class="ls-title">選擇關卡 SELECT LEVEL</div>
   <div class="lv-grid" id="lv-grid"></div>
-  <button class="back-btn" onclick="showSc('title-screen')">&larr; BACK</button>
+  <button class="back-btn" onclick="btnMeow();showSc('title-screen')">&#9664; 返回 BACK</button>
 </div>
 
 <!-- ═══ GAME ═══ -->
 <div id="game-screen" class="screen">
   <div class="side">
-    <div class="hbox"><div class="hlbl">SCORE</div><div class="hval" id="h-score">0</div></div>
-    <div class="hbox"><div class="hlbl">MOVES</div><div class="hval" id="h-moves">30</div></div>
-    <div class="hbox"><div class="hlbl">LV</div><div class="hval" id="h-lv">1</div></div>
-    <div class="nbox"><div class="nlbl">NEXT</div><div id="next-pair"></div></div>
+    <div class="hbox"><div class="hlbl">分數 SCORE</div><div class="hval" id="h-score">0</div></div>
+    <div class="hbox"><div class="hlbl">步數 MOVES</div><div class="hval" id="h-moves">30</div></div>
+    <div class="hbox"><div class="hlbl">關卡 LV</div><div class="hval" id="h-lv">1</div></div>
+    <div class="nbox"><div class="nlbl">下一個 NEXT</div><div id="next-pair"></div></div>
   </div>
   <div class="gcol">
     <div class="goal-row" id="goal-row"></div>
     <div class="bwrap"><canvas id="bc"></canvas><canvas id="pc"></canvas></div>
     <div class="cr">
-      <button class="cbtn clr" onclick="mvP(-1)">&#9664;</button>
-      <button class="cbtn crot" onclick="rtP()">&#8635; SPIN</button>
-      <button class="cbtn crr" onclick="mvP(1)">&#9654;</button>
+      <button class="cbtn clr" onclick="btnMeow();mvP(-1)">&#9664;</button>
+      <button class="cbtn crot" onclick="btnMeow();rtP()">&#8635; 旋轉 SPIN</button>
+      <button class="cbtn crr" onclick="btnMeow();mvP(1)">&#9654;</button>
     </div>
     <div class="cr">
-      <button class="cbtn cdrop" style="flex:1" onclick="hardDrop()">&#11015; DROP</button>
-      <button class="cbtn cpause" onclick="togglePause()">&#9646;&#9646;</button>
-      <button class="cbtn cquit" onclick="doQuit()">&#10005;</button>
+      <button class="cbtn cdrop" style="flex:1" onclick="btnMeow();hardDrop()">&#11015; 快落 DROP</button>
+      <button class="cbtn cpause" onclick="btnMeow();togglePause()" title="暫停 Pause">&#9646;&#9646;</button>
+      <button class="cbtn cquit" onclick="btnMeow();doQuit()" title="離開 Quit">&#10005;</button>
     </div>
   </div>
   <div class="side" style="width:32px;align-items:center;">
-    <button class="book-tab-btn" onclick="openBook()">&#128218; BOOK</button>
+    <button class="book-tab-btn" onclick="btnMeow();openBook()">&#128218; 獎勵 BOOK</button>
   </div>
 </div>
 
@@ -292,28 +292,28 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:'Boogaloo',cur
 <div id="pause-ovl" class="ovl-base" style="background:rgba(5,0,20,.88);z-index:180;">
   <div class="modal">
     <canvas id="pause-cv" width="58" height="58" class="pause-cat"></canvas>
-    <div class="pause-title">PAUSED</div>
-    <button class="tbtn tp" style="width:185px;font-size:1rem;padding:11px 0" onclick="togglePause()">&#9654; RESUME</button>
-    <button class="tbtn tl" style="width:185px;font-size:1rem;padding:11px 0" onclick="restartLevel()">&#8635; RESTART</button>
-    <button class="tbtn" style="width:185px;font-size:1rem;padding:11px 0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border:2px solid rgba(255,255,255,.15);box-shadow:none;" onclick="pauseQuit()">&#9776; LEVELS</button>
+    <div class="pause-title">暫停 PAUSED</div>
+    <button class="tbtn tp" style="width:185px;font-size:1rem;padding:11px 0" onclick="btnMeow();togglePause()">&#9654; 繼續 RESUME</button>
+    <button class="tbtn tl" style="width:185px;font-size:1rem;padding:11px 0" onclick="btnMeow();restartLevel()">&#8635; 重試 RESTART</button>
+    <button class="tbtn" style="width:185px;font-size:1rem;padding:11px 0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border:2px solid rgba(255,255,255,.15);box-shadow:none;" onclick="btnMeow();pauseQuit()">&#9776; 選關 LEVELS</button>
   </div>
 </div>
 
 <!-- ═══ SLIDING SIDE BOOK ═══ -->
 <div id="book-dim" onclick="closeBook()"></div>
-<div id="book-handle" onclick="toggleBook()">
+<div id="book-handle" onclick="btnMeow();toggleBook()">
   <span class="handle-icon">📖</span>
-  <span>BOOK</span>
+  <span>獎勵</span>
 </div>
 <div id="side-book">
   <div class="book-header">
-    <div class="book-logo">&#128218; REWARDS</div>
-    <button class="book-close" onclick="closeBook()">&#10005;</button>
+    <div class="book-logo">&#128218; 獎勵 REWARDS</div>
+    <button class="book-close" onclick="btnMeow();closeBook()">&#10005;</button>
   </div>
   <div class="book-tabs">
-    <button class="btab active" onclick="switchBookTab('missions',this)">&#127775; Daily</button>
-    <button class="btab" onclick="switchBookTab('achieve',this)">&#127942; Goals</button>
-    <button class="btab" onclick="switchBookTab('cats',this)">&#128149; Cats</button>
+    <button class="btab active" onclick="btnMeow();switchBookTab('missions',this)">&#127775; 任務 Daily</button>
+    <button class="btab" onclick="btnMeow();switchBookTab('achieve',this)">&#127942; 成就 Goals</button>
+    <button class="btab" onclick="btnMeow();switchBookTab('cats',this)">&#128149; 貓咪 Cats</button>
   </div>
   <div class="book-panels">
     <div class="book-panel active" id="bp-missions"></div>
@@ -504,7 +504,7 @@ function renderMissionsPanel(){
   div.innerHTML='';
   var hdr=document.createElement('div');
   hdr.style.cssText='font-family:Nunito,sans-serif;font-weight:900;font-size:.55rem;letter-spacing:3px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:8px;text-align:center;';
-  hdr.textContent='Today\'s Missions — Resets Daily';div.appendChild(hdr);
+  hdr.textContent='每日任務 Daily Missions — 每天更新 Resets Daily';div.appendChild(hdr);
   dm.forEach(function(m){
     var pct=Math.min(100,(m.progress||0)/m.target*100);
     var card=document.createElement('div');card.className='dm-card'+(m.done?' done':'');
@@ -520,7 +520,7 @@ function renderMissionsPanel(){
     lbl.textContent=(m.progress||0)+' / '+m.target;card.appendChild(lbl);
     div.appendChild(card);
   });
-  var rst=document.createElement('div');rst.className='dm-reset';rst.textContent='Missions reset at midnight';div.appendChild(rst);
+  var rst=document.createElement('div');rst.className='dm-reset';rst.textContent='午夜自動重置 Resets at midnight';div.appendChild(rst);
 }
 
 /* achievements panel */
@@ -534,7 +534,7 @@ function renderAchPanel(){
     var iconWrap=document.createElement('div');iconWrap.className='ach-icon-wrap';iconWrap.textContent=isUnlocked?ach.icon:'🔒';
     var right=document.createElement('div');right.className='ach-right';
     var nm=document.createElement('div');nm.className='ach-name';nm.textContent=ach.name;
-    var desc=document.createElement('div');desc.className='ach-desc';desc.textContent=isUnlocked?('✓ "'+ach.reward+'" title'):ach.desc;
+    var desc=document.createElement('div');desc.className='ach-desc';desc.textContent=isUnlocked?('✓ 已解鎖 "'+ach.reward+'" 稱號 Unlocked'):ach.desc;
     var pbar=document.createElement('div');pbar.className='ach-pbar';
     var pfill=document.createElement('div');pfill.className='ach-pfill';pfill.style.width=pct+'%';
     pbar.appendChild(pfill);right.appendChild(nm);right.appendChild(desc);right.appendChild(pbar);
@@ -556,8 +556,8 @@ function renderCatsPanel(){
     else{var ctx=cv.getContext('2d');ctx.font='2rem serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.globalAlpha=.5;ctx.fillText('🔒',32,32);ctx.globalAlpha=1;}
     card.appendChild(cv);
     var nm=document.createElement('div');nm.className='cat-cname';nm.textContent=isOwned?cat.name:cat.icon;card.appendChild(nm);
-    if(isOwned&&isNew){var nb=document.createElement('div');nb.className='cat-new-badge';nb.textContent='NEW';card.appendChild(nb);}
-    else if(isOwned){var ob=document.createElement('div');ob.className='cat-owned-badge';ob.textContent='✓ OWNED';card.appendChild(ob);}
+    if(isOwned&&isNew){var nb=document.createElement('div');nb.className='cat-new-badge';nb.textContent='新 NEW';card.appendChild(nb);}
+    else if(isOwned){var ob=document.createElement('div');ob.className='cat-owned-badge';ob.textContent='✓ 已擁有 OWNED';card.appendChild(ob);}
     else{var hint=document.createElement('div');hint.className='cat-unlock-hint';hint.textContent=cat.hint;card.appendChild(hint);}
     grid.appendChild(card);
   });
@@ -677,6 +677,11 @@ function sfxMeow(style, when){
 ══════════════════════════════════ */
 function startBGM(){
   var ac=getAC(); if(!ac)return;
+  // 先確保 AudioContext 是 running 狀態
+  if(ac.state==='suspended'){
+    ac.resume().then(function(){ startBGM(); });
+    return;
+  }
   if(BGM_GAIN){try{BGM_GAIN.disconnect();}catch(e){} BGM_GAIN=null;}
   clearTimeout(BGM_TIMER);
 
@@ -914,14 +919,50 @@ function sfxSpin(){
   o.start(t); o.stop(t+.13);
 }
 
-// AudioContext 需要使用者手勢才能啟動
-document.addEventListener('click', function resumeAC(){
+// ── 按鈕喵叫聲 ──
+// 每次按按鈕發出隨機一種小喵聲
+var MEOW_STYLES=['tiny','happy','tiny','excited','tiny','happy'];
+var meowIdx=0;
+function btnMeow(){
+  var style=MEOW_STYLES[meowIdx%MEOW_STYLES.length];
+  meowIdx++;
+  sfxMeow(style);
+  sfxClick();
+}
+
+// ── AudioContext 自動啟動 ──
+// 瀏覽器規定必須有使用者手勢才能啟動音頻
+// 策略：頁面載入後立刻建立 AC，等第一次互動就馬上開始播放 BGM
+var AUDIO_STARTED=false;
+function tryAutoplay(){
+  if(AUDIO_STARTED) return;
   var ac=getAC();
-  if(ac && ac.state==='suspended'){
-    ac.resume().then(function(){ startBGM(); });
+  if(!ac) return;
+  function go(){
+    AUDIO_STARTED=true;
+    ac.resume().then(function(){
+      startBGM();
+    }).catch(function(){
+      // 如果 resume 失敗就靜默
+    });
   }
-  document.removeEventListener('click', resumeAC);
-}, true);
+  if(ac.state==='running'){ go(); }
+  else if(ac.state==='suspended'){ go(); }
+}
+
+// 在所有使用者互動時嘗試啟動
+['click','touchstart','keydown','mousedown'].forEach(function(ev){
+  document.addEventListener(ev, function handler(){
+    tryAutoplay();
+    // 不移除 listener，讓每次 click 都能確保 AC running
+  }, {capture:true, passive:true});
+});
+
+// 頁面載入後 100ms 嘗試一次（部分瀏覽器允許）
+setTimeout(function(){
+  var ac=getAC();
+  if(ac && ac.state==='running'){ AUDIO_STARTED=true; startBGM(); }
+}, 100);
 
 /* ─── LEVELS ─── */
 var LEVELS=[
@@ -953,17 +994,31 @@ function initGame(lvi){
 }
 function mkPiece(){return{cats:[rc(),rc()],col:0|COLS/2,rot:0};}
 function rc(){return 0|Math.random()*G.lv.colors;}
-function spawnPiece(){G.piece=G.nextPiece;G.nextPiece=mkPiece();G.fallRow=-1;G.fallFrac=0;renderNext();if(!canPlace(G.piece,-1))endGame(false);}
+function spawnPiece(){
+  G.piece=G.nextPiece;
+  G.nextPiece=mkPiece();
+  G.fallRow=-1;
+  G.fallFrac=0;  // 確保每個新方塊從零開始
+  renderNext();
+  if(!canPlace(G.piece,-1))endGame(false);
+}
 function cellsAt(p,row){var c=p.cats,col=p.col,rot=p.rot;if(rot===0)return[{r:row,c:col,cat:c[0]},{r:row+1,c:col,cat:c[1]}];if(rot===1)return[{r:row,c:col,cat:c[0]},{r:row,c:col+1,cat:c[1]}];if(rot===2)return[{r:row+1,c:col,cat:c[1]},{r:row,c:col,cat:c[0]}];if(rot===3)return[{r:row,c:col,cat:c[1]},{r:row,c:col+1,cat:c[0]}];return[];}
 function canPlace(p,row){var cs=cellsAt(p,row);for(var i=0;i<cs.length;i++){var c=cs[i];if(c.c<0||c.c>=COLS||c.r>=ROWS)return false;if(c.r>=0&&G.board[c.r][c.c]>=0)return false;}return true;}
 function mvP(d){if(G.busy||G.over||G_paused)return;var n=Object.assign({},G.piece,{col:G.piece.col+d});if(canPlace(n,G.fallRow)){G.piece=n;sfxClick();}}
 function rtP(){if(G.busy||G.over||G_paused)return;var n=Object.assign({},G.piece,{rot:(G.piece.rot+1)%4});if(canPlace(n,G.fallRow)){G.piece=n;sfxSpin();return;}var kl=Object.assign({},n,{col:n.col-1});if(canPlace(kl,G.fallRow)){G.piece=kl;sfxSpin();return;}var kr=Object.assign({},n,{col:n.col+1});if(canPlace(kr,G.fallRow)){G.piece=kr;sfxSpin();}}
-function hardDrop(){if(G.busy||G.over||G_paused)return;while(canPlace(G.piece,G.fallRow+1))G.fallRow++;lockPiece();}
+function hardDrop(){if(G.busy||G.over||G_paused)return;while(canPlace(G.piece,G.fallRow+1))G.fallRow++;G.fallFrac=0;lockPiece();}
 
 function lockPiece(){
-  if(G.busy)return;G.busy=true;
+  if(G.busy||!G.piece)return;
+  G.busy=true;
+  G.fallFrac=0;
+  var lp=G.piece;   // 存起來
+  var lr=G.fallRow;
+  G.piece=null;     // 立刻清除，避免畫面重疊
   sfxDrop();
-  cellsAt(G.piece,G.fallRow).forEach(function(c){if(c.r>=0&&c.r<ROWS)G.board[c.r][c.c]=c.cat;});
+  cellsAt(lp,lr).forEach(function(c){
+    if(c.r>=0&&c.r<ROWS) G.board[c.r][c.c]=c.cat;
+  });
   G.moves--;updHUD();
   setTimeout(function(){
     chain(1).then(function(){
@@ -1014,7 +1069,34 @@ function gravity(){for(var c=0;c<COLS;c++){var e=ROWS-1;for(var r=ROWS-1;r>=0;r-
 function findMatches(){var s=new Set();for(var r=0;r<ROWS;r++)for(var c=0;c<COLS-2;c++){var v=G.board[r][c];if(v<0)continue;if(G.board[r][c+1]===v&&G.board[r][c+2]===v){var e=c+2;while(e+1<COLS&&G.board[r][e+1]===v)e++;for(var x=c;x<=e;x++)s.add(r+','+x);c=e;}}for(var c=0;c<COLS;c++)for(var r=0;r<ROWS-2;r++){var v=G.board[r][c];if(v<0)continue;if(G.board[r+1][c]===v&&G.board[r+2][c]===v){var e=r+2;while(e+1<ROWS&&G.board[e+1][c]===v)e++;for(var y=r;y<=e;y++)s.add(y+','+c);r=e;}}return Array.from(s).map(function(k){var p=k.split(',');return{r:+p[0],c:+p[1]};});}
 
 function setupCanvas(){var bc=document.getElementById('bc'),pc=document.getElementById('pc');bc.width=BW;bc.height=BH;pc.width=BW;pc.height=BH;bCtx=bc.getContext('2d');pCtx=pc.getContext('2d');}
-function loop(ts){if(!lastTs)lastTs=ts;var dt=(ts-lastTs)/1000;lastTs=ts;frame++;G.wobble+=dt*2.5;if(!G.busy&&!G.over&&G.piece&&!G_paused){G.fallFrac+=G.fallSpeed;while(G.fallFrac>=1){G.fallFrac--;if(canPlace(G.piece,G.fallRow+1))G.fallRow++;else{lockPiece();break;}}}drawBoard();drawPiece();animId=requestAnimationFrame(loop);}
+function loop(ts){
+  if(!lastTs)lastTs=ts;
+  var dt=(ts-lastTs)/1000;
+  // 限制 dt 最大值，避免背景分頁切回來時一次跳太多
+  if(dt>0.1)dt=0.1;
+  lastTs=ts;frame++;
+  G.wobble+=dt*2.5;
+
+  if(!G.busy&&!G.over&&G.piece&&!G_paused){
+    G.fallFrac+=G.fallSpeed;
+    // 每幀最多往下一格，不用 while，避免一幀多次觸發
+    if(G.fallFrac>=1){
+      G.fallFrac-=1;
+      if(canPlace(G.piece,G.fallRow+1)){
+        G.fallRow++;
+      } else {
+        // 貼齊底部，立即清除視覺上的落下方塊再鎖定
+        G.fallFrac=0;
+        G.piece._locking=true; // 標記正在鎖定
+        lockPiece();
+      }
+    }
+  }
+
+  drawBoard();
+  drawPiece();
+  animId=requestAnimationFrame(loop);
+}
 function drawBoard(){var ctx=bCtx;ctx.clearRect(0,0,BW,BH);ctx.strokeStyle='rgba(255,255,255,.03)';ctx.lineWidth=1;for(var r=0;r<=ROWS;r++){ctx.beginPath();ctx.moveTo(0,r*CELL);ctx.lineTo(BW,r*CELL);ctx.stroke();}for(var c=0;c<=COLS;c++){ctx.beginPath();ctx.moveTo(c*CELL,0);ctx.lineTo(c*CELL,BH);ctx.stroke();}for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){var v=G.board[r][c];if(v<0)continue;var fl=G.flashSet&&G.flashSet.has(r+','+c);if(fl){ctx.save();var sc=1+.25*Math.abs(Math.sin(frame*.5));ctx.translate(c*CELL+CELL/2,r*CELL+CELL/2);ctx.scale(sc,sc);ctx.translate(-(c*CELL+CELL/2),-(r*CELL+CELL/2));}ctx.globalAlpha=fl?(.4+.6*Math.abs(Math.sin(frame*.4))):1;drawCat(ctx,c*CELL+CELL/2,r*CELL+CELL/2,CELL,v,G.style,G.wobble,frame);ctx.globalAlpha=1;if(fl)ctx.restore();}}
 function drawPiece(){var ctx=pCtx;ctx.clearRect(0,0,BW,BH);if(!G.piece||G.busy)return;var gr=G.fallRow;while(canPlace(G.piece,gr+1))gr++;cellsAt(G.piece,gr).forEach(function(c){if(c.r>=0){ctx.globalAlpha=.18;drawCat(ctx,c.c*CELL+CELL/2,c.r*CELL+CELL/2,CELL,c.cat,G.style,0,frame);}});ctx.globalAlpha=1;cellsAt(G.piece,G.fallRow).forEach(function(c){var py=(c.r+G.fallFrac)*CELL;if(py>-CELL)drawCat(ctx,c.c*CELL+CELL/2,py+CELL/2,CELL,c.cat,G.style,G.wobble,frame);});}
 
@@ -1061,19 +1143,19 @@ function endGame(win){
 function showResult(win,stars){
   var mc=document.getElementById('modal-cv'),mctx=mc.getContext('2d');
   mctx.clearRect(0,0,68,68);drawCat(mctx,34,34,68,win?0:2,G.style,0,0);
-  document.getElementById('m-title').textContent=win?'CLEAR! 🎉':'GAME OVER';
-  document.getElementById('m-score').textContent='Score: '+G.score+(win?' · Chain: x'+G.maxChain:'');
+  document.getElementById('m-title').textContent=win?'過關！CLEAR! 🎉':'再試一次 GAME OVER';
+  document.getElementById('m-score').textContent='得分 Score: '+G.score+(win?' · 最長連鎖 Chain: x'+G.maxChain:'');
   var stEl=document.getElementById('m-stars');stEl.innerHTML='';
   if(win){for(var i=0;i<3;i++){var sp=document.createElement('span');sp.textContent=i<stars?'⭐':'☆';stEl.appendChild(sp);}}else stEl.textContent='💔';
   var btns=document.getElementById('m-btns');btns.innerHTML='';
   function mkB(txt,cls,fn){var b=document.createElement('button');b.className='tbtn '+cls;b.textContent=txt;b.onclick=fn;b.style.cssText='font-size:.88rem;padding:9px 16px;margin:0;width:auto;';btns.appendChild(b);}
-  mkB('RETRY','tl',function(){hideOvl();startLevel(G.lvi);});
-  if(win&&G.lvi<LEVELS.length-1){(function(ni){mkB('NEXT ▶','tp',function(){hideOvl();startLevel(ni);});})(G.lvi+1);}
-  mkB('LEVELS','',function(){hideOvl();showLvScreen();});
+  mkB('🔄 重試 RETRY','tl',function(){btnMeow();hideOvl();startLevel(G.lvi);});
+  if(win&&G.lvi<LEVELS.length-1){(function(ni){mkB('下一關 NEXT ▶','tp',function(){btnMeow();hideOvl();startLevel(ni);});})(G.lvi+1);}
+  mkB('🏠 選關 LEVELS','',function(){btnMeow();hideOvl();showLvScreen();});
   document.getElementById('ovl').classList.add('show');
 }
 function hideOvl(){document.getElementById('ovl').classList.remove('show');}
-function doQuit(){if(confirm('Quit this run?')){cancelAnimationFrame(animId);hideOvl();closeBook();showLvScreen();}}
+function doQuit(){if(confirm('確定要離開這局？\nQuit this run?')){cancelAnimationFrame(animId);hideOvl();closeBook();showLvScreen();}}
 
 function togglePause(){if(G.over)return;G_paused=!G_paused;var povl=document.getElementById('pause-ovl');if(G_paused){cancelAnimationFrame(animId);var pc=document.getElementById('pause-cv'),pctx=pc.getContext('2d');pctx.clearRect(0,0,58,58);drawCat(pctx,29,29,58,0,G.style,0,0);povl.classList.add('show');}else{povl.classList.remove('show');lastTs=0;animId=requestAnimationFrame(loop);}}
 function restartLevel(){document.getElementById('pause-ovl').classList.remove('show');G_paused=false;startLevel(G.lvi);}
@@ -1092,7 +1174,17 @@ function initTitle(){
   setTimeout(function(){var pops=checkUnlocks({});pushPops(pops);},600);
 }
 
-function startLevel(i){cancelAnimationFrame(titleRaf);G_paused=false;closeBook();showSc('game-screen');setupCanvas();initGame(i);lastTs=0;frame=0;cancelAnimationFrame(animId);animId=requestAnimationFrame(loop);startBGM();}
+function startLevel(i){
+  cancelAnimationFrame(titleRaf);G_paused=false;closeBook();
+  showSc('game-screen');setupCanvas();initGame(i);
+  lastTs=0;frame=0;cancelAnimationFrame(animId);animId=requestAnimationFrame(loop);
+  var ac=getAC();
+  if(ac && ac.state==='suspended'){
+    ac.resume().then(function(){ startBGM(); });
+  } else {
+    startBGM();
+  }
+}
 function showSc(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});document.getElementById(id).classList.add('active');if(id==='title-screen'){initTitle();stopBGM();}}
 function showLvScreen(){buildLvGrid();showSc('lv-screen');}
 
